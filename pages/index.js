@@ -1,7 +1,37 @@
 import Head from "next/head";
 import Image from "next/image";
+import React, { useState } from "react";
 
 export default function Home() {
+  const [username, setUsername] = useState(null);
+  const [firstname, setFirstname] = useState(null);
+  const [lastname, setLastname] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+  const [id, setId] = useState(null);
+
+  const AVATAR_BASE_URL = "https://avatars.githubusercontent.com/";
+
+  const handleChange = (e) => {
+    switch (e.target.name) {
+      case "username":
+        setUsername(e.target.value);
+        setAvatar(`${AVATAR_BASE_URL}${e.target.value}`);
+        break;
+      case "firstname":
+        setFirstname(e.target.value);
+        break;
+      case "lastname":
+        setLastname(e.target.value);
+        break;
+      case "id":
+        setId(e.target.value);
+        break;
+      case "avatar":
+        setAvatar(`${AVATAR_BASE_URL}/${username}`);
+        break;
+    }
+  };
+
   return (
     <div className="flex flex-col items-center min-h-screen text-white bg-black">
       <Head>
@@ -26,13 +56,25 @@ export default function Home() {
                 width={75}
                 height={75}
                 className="object-cover w-48 rounded-full"
-                src="https://github.com/avneesh0612.png"
-                alt=""
+                src={
+                  avatar
+                    ? avatar !== AVATAR_BASE_URL
+                      ? avatar
+                      : "https://github.com/avneesh0612.png"
+                    : "https://github.com/avneesh0612.png"
+                }
+                alt="Avatar"
               />
               <div className="flex flex-col justify-around">
-                <h1 className="text-xl font-bold">Avneesh</h1>
-                <h1 className="-mt-2 text-xl font-bold">Agarwal</h1>
-                <p className="text-sm ">@avneesh0612</p>
+                <h1 className="text-xl font-bold">
+                  {firstname ? firstname : "Avneesh"}
+                </h1>
+                <h1 className="-mt-2 text-xl font-bold">
+                  {lastname ? lastname : "Agarwal"}
+                </h1>
+                <p className="text-sm ">
+                  @{username ? username : "avneesh0612"}
+                </p>
               </div>
             </div>
 
@@ -77,9 +119,54 @@ export default function Home() {
             }}
             className="!bg-cover flex items-center justify-center py-8 -mb-1 text-center relative"
           >
-            <span className="font-mono text-4xl font-medium">#001755</span>
+            <span className="font-mono text-4xl font-medium">
+              #{id ? id : "001755"}
+            </span>
           </div>
         </div>
+      </div>
+
+      <div className="flex flex-col m-8">
+        <input
+          className="w-full m-2 p-2 border-2 border-gray-700 rounded-lg text-white bg-black"
+          type="text"
+          name="username"
+          onChange={handleChange}
+          value={username}
+          placeholder="GitHub Username"
+        />
+        <input
+          className="w-full m-2 p-2 border-2 border-gray-700 rounded-lg text-white bg-black"
+          type="text"
+          name="firstname"
+          onChange={handleChange}
+          value={firstname}
+          placeholder="First Name"
+        />
+        <input
+          className="w-full m-2 p-2 border-2 border-gray-700 rounded-lg text-white bg-black"
+          type="text"
+          name="lastname"
+          onChange={handleChange}
+          value={lastname}
+          placeholder="Last Name"
+        />
+        <input
+          className="w-full m-2 p-2 border-2 border-gray-700 rounded-lg text-white bg-black"
+          type="text"
+          name="id"
+          onChange={handleChange}
+          value={id}
+          placeholder="ID Number"
+        />
+        <textarea
+          className="w-full m-2 p-2 border-2 border-gray-700 rounded-lg text-white bg-black"
+          type="text"
+          name="avatar_url"
+          onChange={handleChange}
+          value={avatar}
+          placeholder="Avatar URL"
+        />
       </div>
     </div>
   );
