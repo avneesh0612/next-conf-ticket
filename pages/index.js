@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center min-h-screen text-white bg-black">
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Next.js Conf Ticket</title>
+        <link rel="icon" href="https://www.creative-tim.com/assets/frameworks/icon-nextjs-552cecd0240ba0ae7b5fbf899c1ee10cd66f8c38ea6fe77233fd37ad1cff0dca.png" />
       </Head>
       <div className="flex flex-col items-center justify-center hover:animate-shake">
         <div className="relative z-50 w-20 h-80 -mb-28">
