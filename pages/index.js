@@ -70,7 +70,7 @@ export default function Home() {
                   {firstname ? firstname : "Avneesh"}
                 </h1>
                 <h1 className="-mt-2 text-xl font-bold">
-                  {lastname ? lastname : "Aggarwal"}
+                  {lastname ? lastname : "Agarwal"}
                 </h1>
                 <p className="text-sm ">
                   @{username ? username : "avneesh0612"}
